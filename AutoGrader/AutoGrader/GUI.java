@@ -3,10 +3,7 @@ package AutoGrader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -213,15 +210,11 @@ public class GUI extends JFrame {
 				}
 
 				File dirSSS = new File(currentPath+"\\src");
-				// 文件对象创建后，指定的文件或目录不一定物理上存在
 				if(!dirSSS.exists()) {       //A
 					dirSSS.mkdir();          //B
 				}
 
 				currentPath += "\\src\\" + findLastWord(path);
-				// 注意看这里 src 是写死的 说明你们默认在根目录下有这个 src 文件夹
-				// 但是我这里没有 好吧 我自己新建一个 看着
-				// 建好了 现在我运行给你看
 				File file = new File(currentPath);
 		        System.out.println("****216   GUI.java  "+currentPath);
 

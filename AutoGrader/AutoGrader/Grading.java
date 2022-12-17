@@ -9,7 +9,7 @@ public class Grading {
 	public static String[] gradingTask;
 	public static List<Map> readStandardAnswer(String standardAnswer) {
 		try {
-			List<Map> standardInputOutputOrdered = new ArrayList<Map>(); 
+			List<Map> standardInputOutputOrdered = new ArrayList<Map>();
 			Map<List<String>, List<String>> standardInputOutput = new HashMap<List<String>, List<String>>();
 			Scanner input = new Scanner(new FileReader(standardAnswer));
 			// Removing two lines of header information
@@ -45,7 +45,7 @@ public class Grading {
 		}
 		return null;
 	}
-	
+
 	public static List<String> taskName(String standardAnswer) {
 		try {
 			List<String> taskNames=new ArrayList<>();
@@ -64,7 +64,7 @@ public class Grading {
 		}
 		return null;
 	}
-	
+
 	public static Map<Integer, List<String>> readScore(String standardAnswer) {
 		try {
 			Map<Integer, List<String>> standardScore = new HashMap<Integer, List<String>>();
@@ -81,7 +81,7 @@ public class Grading {
 					eachScore.add(word[2]);
 				}
 				else{
-					
+
 //					System.out.println("&&&&&&&&&&&&&&&&"+i);
 //					System.out.println("&&&&&&&&&&&&&&&&"+eachScore.get(0));
 					standardScore.put(i, eachScore);
@@ -102,7 +102,7 @@ public class Grading {
 		}
 		return null;
 	}
-	
+
 	public static Map<Integer, List<String>> readSpace(String standardAnswer) {
 		try {
 			Map<Integer, List<String>> standardSpace = new HashMap<Integer, List<String>>();
@@ -119,7 +119,7 @@ public class Grading {
 					eachSpace.add(word[3]);
 				}
 				else{
-					
+
 //					System.out.println("&&&&&&&&&&&&&&&&"+i);
 //					System.out.println("&&&&&&&&&&&&&&&&"+eachScore.get(0));
 					standardSpace.put(i, eachSpace);
@@ -140,7 +140,7 @@ public class Grading {
 		}
 		return null;
 	}
-	
+
 	public static Map<Integer, List<String>> readCase(String standardAnswer) {
 		try {
 			Map<Integer, List<String>> standardCase = new HashMap<Integer, List<String>>();
@@ -157,7 +157,7 @@ public class Grading {
 					eachCase.add(word[4]);
 				}
 				else{
-					
+
 //					System.out.println("&&&&&&&&&&&&&&&&"+i);
 //					System.out.println("&&&&&&&&&&&&&&&&"+eachScore.get(0));
 					standardCase.put(i, eachCase);
@@ -178,8 +178,8 @@ public class Grading {
 		}
 		return null;
 	}
-	
-	
+
+
 	//change
 	public static File getStudentResults (String path, File[] ASs, File[]eachTask, List standardOutput, int[] studentCommentsGrade, String[] stdPreprocessingComments,  String[][] studentOutput, String standardAnswerName, int numberOfTask, List<String> eachScore, List<String> spaceRequirement, List<String> caseRequirement){
 		try {
@@ -210,11 +210,11 @@ public class Grading {
 			}
 
 			csvWriter.append("\n");
-			csvWriter.close();		
-			
-			
+			csvWriter.close();
+
+
 			gradingTask = new String[eachTask.length];
-			for (int orderOfStudent = 0; orderOfStudent < eachTask.length; orderOfStudent++) {                
+			for (int orderOfStudent = 0; orderOfStudent < eachTask.length; orderOfStudent++) {
 				String studentInformation = eachTask[orderOfStudent].getName();
 				gradingTask[orderOfStudent] = studentInformation;
 //				System.out.println(studentInformation);
@@ -238,7 +238,7 @@ public class Grading {
 			}
 //			for(int i = 0; i < gradingTask.length; i++) {
 //				System.out.println(gradingTask[i]);
-//			} 
+//			}
 			return studentResults;
 			//getResultTotalFile();
 		} catch (Exception e) {
@@ -273,14 +273,14 @@ public class Grading {
 				int studentGrade = compareAnswer2(studentAnswer, standardOutput) + studentCommentsGrade[orderOfStudent];
 //				getResultFile(studentResults, studentIDNumber, studentName, studentGrade, orderOfStudent, commentGrade, codeGrade, stdPreprocessingComments[orderOfStudent], gradeComment);
 			}
-			
+
 			return studentResults;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public static String[] compareAnswer (String[]studentAnswer, List standardOutput, List<String> eachScore, List<String> spaceRequirement, List<String> caseRequirement){
 		int marks = 0;
 		int fullMarks = 0;
@@ -295,7 +295,7 @@ public class Grading {
 		for (int example = 0; example < standardOutput.size(); example++) {
 			fullMarks += Integer.parseInt(eachScore.get(example));
 		}
-		outCycle: for (int example = 0; example < standardOutput.size(); example++) { 
+		outCycle: for (int example = 0; example < standardOutput.size(); example++) {
 			ArrayList<String> numberInStudentAnswer = new ArrayList<String>();
 			ArrayList<String> numberInStandardAnswer = new ArrayList<String>();
 			String[] splitStudentAnswer = studentAnswer[example].split(" ");
@@ -310,7 +310,7 @@ public class Grading {
 					numberInStandardAnswer.add(splitStandardAnswer[item]);
 				}
 			}
-			
+
 			if (numberInStandardAnswer.size()==numberInStudentAnswer.size()) {
 				for(int i = numberInStandardAnswer.size()-1; i >=0; i--){
 		            if(Math.abs(Double.valueOf(numberInStudentAnswer.get(i))-Double.valueOf(numberInStandardAnswer.get(i)))<=0.000001){
@@ -328,7 +328,7 @@ public class Grading {
             }
 
 			System.out.println(studentAnswer[example]);
-			
+
 			switch ((spaceRequirement.get(example)+caseRequirement.get(example)).toLowerCase()) {
 				case "tt":
 					if (studentAnswer[example].replaceAll("\\s", "").equalsIgnoreCase(((String) standardOutput.get(example)).replaceAll("\\s", ""))) {
@@ -424,7 +424,7 @@ public class Grading {
 			csvWriter.append(",");
 			csvWriter.append("ID");
 			csvWriter.append(",");
-			csvWriter.append("Name"); 
+			csvWriter.append("Name");
 			csvWriter.append(",");
 			for (int numberOfTask = 1; numberOfTask <= eachTaskResult.length; numberOfTask++) {
 				csvWriter.append("total_Q"+numberOfTask);
@@ -436,7 +436,7 @@ public class Grading {
 				csvWriter.append("code_Q"+numberOfTask);
 				csvWriter.append(",");
 			}
-			csvWriter.append("TotalGrade"); 
+			csvWriter.append("TotalGrade");
 			csvWriter.append(",");
 			csvWriter.append("total_comment");
 			csvWriter.append(",");
@@ -445,7 +445,7 @@ public class Grading {
 			csvWriter.append("orderOfStudent");
 			csvWriter.append("\n");
 			String [][] totalInformation = new String [studentNumber][7+4*eachTaskResult.length];
-			
+
 			for (int orderOfStudent = 0; orderOfStudent < studentNumber; orderOfStudent++) {
 				String studentInformation = ASs[orderOfStudent].getName();
 				String studentIDNumber = findIDNumber(studentInformation);
@@ -488,18 +488,18 @@ public class Grading {
 	  		  	totalInformation[orderOfStudent][4+4*eachTaskResult.length] = String.valueOf(totalComment);
 	  		  	totalInformation[orderOfStudent][5+4*eachTaskResult.length] = String.valueOf(totalCode);
 	  		  	totalInformation[orderOfStudent][6+4*eachTaskResult.length] = String.valueOf(orderOfStudent+1);
-	  		  	
-	  		  	
-	  		  	
+
+
+
 				for (int i = 0; i < totalInformation[orderOfStudent].length-1; i++) {
 				csvWriter.append(totalInformation[orderOfStudent][i]);
-				csvWriter.append(",");				
+				csvWriter.append(",");
 				}
 				csvWriter.append(totalInformation[orderOfStudent][totalInformation[orderOfStudent].length-1]);
 				csvWriter.append("\n");
 			}
-			csvWriter.close();	
-			
+			csvWriter.close();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
